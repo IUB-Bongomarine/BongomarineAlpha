@@ -1,7 +1,7 @@
 # BongomarineAlpha
 
 ## Description
-This project is a sample application that utilizes `pyserial`, `flask`, and `jsonify` libraries.
+This codebase for IUB Bongomarine Alpha which utilizes `pyserial`, `flask`, and `jsonify` libraries.
 
 ## Directory Details
 1.  "control_system" folder contains the microcontroller and tethered remote controlling software. Where "main-mega-aid-Auto" folder is the current working codebase.
