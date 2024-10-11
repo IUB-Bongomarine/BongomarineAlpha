@@ -1,12 +1,7 @@
-# BongomarineAlpha
+# Project Name
 
 ## Description
 This project is a sample application that utilizes `pyserial`, `flask`, and `jsonify` libraries.
-
-## Directory Details
-1.  "control_system" folder contains the microcontroller and tethered remote controlling software. Where "main-mega-aid-Auto" folder is the current working codebase.
-
-2.  "sauvc_objectdetection" folder contains the autonomous controlling codebase. Where "mqualify.py" is the currect working file.
 
 ## Installation
 To install the required dependencies, follow the steps below:

@@ -1,0 +1,76 @@
+body {
+    background: url('bg.jpg') no-repeat center center fixed; /* Replace with your actual background image URL */
+    background-size: cover;
+}
+.center {
+    text-align: center;
+    margin: auto;
+}
+.gamepad {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+.gamepad button {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+#u {
+    grid-row: 2;
+    grid-column: 1;
+}
+#d {
+    grid-row: 2;
+    grid-column: 2;
+}
+#f {
+    grid-row: 1;
+    grid-column: 4;
+}
+#b {
+    grid-row: 2;
+    grid-column: 4;
+}
+#l {
+    grid-row: 2;
+    grid-column: 3;
+}
+#r {
+    grid-row: 2;
+    grid-column: 5;
+}
+#s {
+    grid-column: 1;
+    grid-row: 1;
+}
+#record {    
+    display: flex;
+    justify-content: space-between;
+}
+.status-panel {
+    margin-top: 30px;
+    text-align: center;
+}
+.note-panel {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 15px;
+    padding: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+    animation: slideInFromLeft 1s ease-in-out;
+}
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SAUVC BONGOMARINE CONTROLLER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="center">SAUVC BONGOMARINE CONTROLLER</h2>
+        <div class="status-panel">
+            <img src="/video_feed" class="img-fluid" alt="Video Feed" width="800"/>
+            <div id="record">
+                <button id="start" class="btn btn-success">Start Recording</button>
+                <button id="stop" class="btn btn-warning">Stop Recording</button>
+            </div>
+            <strong><span id="recording-status" class="text-danger"></span></strong>
+        </div>
+        <div class="gamepad">
+            <button type="button" class="btn btn-primary" id="u">Up</button>
+            <button type="button" class="btn btn-primary" id="l">Left</button>
+            <button type="button" class="btn btn-primary" id="f">Forward</button>
+            <button type="button" class="btn btn-primary" id="r">Right</button>
+            <button type="button" class="btn btn-primary" id="b">Back</button>
+            <button type="button" class="btn btn-primary" id="d">Down</button>
+            <button type="button" class="btn btn-danger" id="s">All Stop</button>
+        </div>
+        <div class="note-panel center">
+            <p><strong><u>Keyboard Controls</u></strong></p>
+            <ul align="left">
+                <li>Forward: Arrow Up or W</li>
+                <li>Backward: Arrow Down or S</li>
+                <li>Left: Arrow Left or A</li>
+                <li>Right: Arrow Right or D</li>
+                <li>Upward: Shift</li>
+                <li>Downward: Space</li>
+                <li>ALL OFF: F</li>
+                <li>Recording Start: R</li>
+                <li>Recording Stop: T</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            function sendDirection(direction) {
+                fetch('/control', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `direction=${direction}`
+                })
+                .then(response => response.ok ? console.log(direction) : console.error('Failed to send direction'))
+                .catch(error => console.error('Error:', error));
+            }
+
+            $('button').click(function() {
+                const direction = this.id;
+                sendDirection(direction);
+                if (direction === 'start') {
+                    $('#recording-status').text('🔴 Recording is ON 🔴');
+                } else if (direction === 'stop') {
+                    $('#recording-status').text('Recording is OFF');
+                }
+            });
+
+            $(document).keydown(function(event) {
+                switch(event.key) {
+                    case 'ArrowUp':
+                    case 'w':
+                        sendDirection('f');
+                        break;
+                    case 'ArrowDown':
+                    case 's':
+                        sendDirection('b');
+                        break;
+                    case 'ArrowLeft':
+                    case 'a':
+                        sendDirection('l');
+                        break;
+                    case 'ArrowRight':
+                    case 'd':
+                        sendDirection('r');
+                        break;
+                    case 'i':
+                        sendDirection('u');
+                        break;
+                    case 'k':
+                        sendDirection('d');
+                        break;
+                    case 'f':
+                        sendDirection('s');
+                        break;
+                    case 'p':
+                        sendDirection('p');
+                        break;
+                    case 'o':
+                        sendDirection('o');
+                        break;
+                    case 'r':
+                        sendDirection('start');
+                        $('#recording-status').text('Recording is ON');
+                        break;
+                    case 't':
+                        sendDirection('stop');
+                        $('#recording-status').text('Recording is OFF');
+                        break;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
